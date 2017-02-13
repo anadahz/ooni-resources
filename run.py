@@ -21,6 +21,7 @@ CITIZENLAB_TEST_LISTS_REPO_URL = "https://github.com/citizenlab/test-lists.git"
 CITIZENLAB_TEST_LISTS_REPO = "working_dir/test-lists/"
 CITIZENLAB_TEST_LISTS = "working_dir/test-lists/lists/*.csv"
 BRIDGE_REACHABILITY_LISTS = "bridge_reachability/*.csv"
+CITIZENLAB_SERVICES_MEEK_LISTS = "working_dir/test-lists/lists/services/meek/meek.csv"
 
 CWD = os.path.dirname(__file__)
 MANIFEST_FILE = "assets/manifest.json"
@@ -34,7 +35,8 @@ except Exception:
 RESOURCES = [
     {"maxmind-geoip": [GEOIP_ASN_FILE, GEOIP_FILE]},
     {"citizenlab-test-lists": [CITIZENLAB_TEST_LISTS]},
-    {"tor-bridges": [BRIDGE_REACHABILITY_LISTS]}
+    {"tor-bridges": [BRIDGE_REACHABILITY_LISTS]},
+    {"citizenlab-services-meek-lists": [CITIZENLAB_SERVICES_MEEK_LISTS]}
 ]
 
 GH_BASE_URL = "https://api.github.com/repos/OpenObservatory/ooni-resources"
@@ -179,6 +181,8 @@ def _resolve_path(path):
         real_prepath = "working_dir/"
     elif prepath == "tor-bridges":
         real_prepath = "bridge_reachability"
+    elif prepath == "citizenlab-services-meek-lists":
+        real_prepath = "working_dir/test-lists/lists/services/meek/"
     else:
         raise Exception("Invalid prepath")
     return os.path.join(real_prepath, filename)
